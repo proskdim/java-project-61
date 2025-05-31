@@ -6,6 +6,7 @@ import hexlet.code.games.Game;
 import hexlet.code.games.GreetGame;
 import hexlet.code.games.GCDGame;
 import hexlet.code.games.ProgressionGame;
+import hexlet.code.games.PrimeGame;
 
 import java.util.Scanner;
 
@@ -16,23 +17,18 @@ public class Menu {
             3 - Calc
             4 - GCD
             5 - Progression
+            6 - Prime
             0 - Exit\
             """;
 
     public static Game show() {
         var choice = choiceGame();
 
-        if (choice.equals("0")) {
-            return null;
-        }
-
         var game = selectGame(choice);
 
-        if (game == null) {
-            return null;
+        if (game != null) {
+            System.out.printf("Your choice: %s\n\n", choice);
         }
-
-        System.out.printf("Your choice: %s\n\n", choice);
 
         return game;
     }
@@ -44,6 +40,7 @@ public class Menu {
             case "3" -> new CalcGame();
             case "4" -> new GCDGame();
             case "5" -> new ProgressionGame();
+            case "6" -> new PrimeGame();
             default ->  null;
         };
     }
