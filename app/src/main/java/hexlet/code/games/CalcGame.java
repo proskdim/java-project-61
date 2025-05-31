@@ -1,39 +1,21 @@
 package hexlet.code.games;
 
-import hexlet.code.entities.Player;
-
 import java.util.Random;
 import java.util.Scanner;
 
-public class CalcGame implements Game {
+public class CalcGame extends Game {
 
     private static final int MAX_NUMBER = 49;
 
-    private static final int DEFAULT_ROUNDS = 3;
+    @Override
+    protected boolean runRound(Object round) {
+        var evenRound = (EvenRound) round;
+        var question = "Question: %s".formatted(evenRound.getTask());
 
-    public Player run(Player player) {
-        System.out.println("What is the result of the expression?");
-
-        for (var round = 0; round < DEFAULT_ROUNDS; round++) {
-            var gameRound = newRound();
-            var isPlayerWin = runRound(gameRound);
-
-            if (!isPlayerWin) {
-                System.out.printf("Let's try again, %s!\n", player.getName());
-                return player;
-            }
-        }
-
-        System.out.printf("Congratulations, %s!\n", player.getName());
-        return player;
-    }
-
-    private boolean runRound(EvenRound round) {
-        var question = "Question: %s".formatted(round.getTask());
         System.out.println(question);
 
         var playerAnswer = new Scanner(System.in).nextLine();
-        var rightAnswer = round.getRightAnswer();
+        var rightAnswer = evenRound.getRightAnswer();
 
         if (playerAnswer.equals(rightAnswer)) {
             System.out.println("Correct!");
@@ -48,6 +30,12 @@ public class CalcGame implements Game {
         }
     }
 
+    @Override
+    protected void printRules() {
+        System.out.println("What is the result of the expression?");
+    }
+
+    @Override
     public EvenRound newRound() {
         var random = new Random();
 
