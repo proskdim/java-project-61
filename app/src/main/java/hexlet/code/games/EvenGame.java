@@ -1,7 +1,6 @@
 package hexlet.code.games;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class EvenGame extends Game {
     private static final int MAX_NUMBER = 99;

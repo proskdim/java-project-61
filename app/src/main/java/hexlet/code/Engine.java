@@ -7,7 +7,9 @@ public class Engine {
     public static void start() {
         var game = Menu.show();
 
-        if (game == null) { return; }
+        if (game == null) {
+            return;
+        }
 
         if (game instanceof GreetGame) {
             game.run(new Player());
@@ -23,7 +25,7 @@ public class Engine {
         }
     }
 
-     private static Player greet() {
+    private static Player greet() {
         return new GreetGame().run(new Player());
     }
 }

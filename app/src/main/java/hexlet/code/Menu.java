@@ -18,11 +18,15 @@ public class Menu {
     public static Game show() {
         var choice = choiceGame();
 
-        if (choice.equals("0")) { return null; }
+        if (choice.equals("0")) {
+            return null;
+        }
 
         var game = selectGame(choice);
 
-        if (game == null) { return null; }
+        if (game == null) {
+            return null;
+        }
 
         System.out.printf("Your choice: %s\n\n", choice);
 
