@@ -14,8 +14,13 @@ public class Engine {
             return;
         }
 
-        var player = greet();
-        game.run(player);
+        var player = game.run(greet());
+
+        if (player.hasWon()) {
+            System.out.printf("Congratulations, %s!\n", player.getName());
+        } else {
+            System.out.printf("Let's try again, %s!\n", player.getName());
+        }
     }
 
      private static Player greet() {

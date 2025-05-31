@@ -8,35 +8,12 @@ public class CalcGame extends Game {
     private static final int MAX_NUMBER = 49;
 
     @Override
-    protected boolean runRound(Object round) {
-        var evenRound = (EvenRound) round;
-        var question = "Question: %s".formatted(evenRound.getTask());
-
-        System.out.println(question);
-
-        var playerAnswer = new Scanner(System.in).nextLine();
-        var rightAnswer = evenRound.getRightAnswer();
-
-        if (playerAnswer.equals(rightAnswer)) {
-            System.out.println("Correct!");
-            return true;
-        } else {
-            System.out.printf(
-                    "'%s' is wrong answer ;(. Correct answer was '%s'\n",
-                    playerAnswer,
-                    rightAnswer
-            );
-            return false;
-        }
-    }
-
-    @Override
     protected void printRules() {
         System.out.println("What is the result of the expression?");
     }
 
     @Override
-    public EvenRound newRound() {
+    public GameRound newRound() {
         var random = new Random();
 
         var cm = Operations.randOperation();
@@ -50,6 +27,6 @@ public class CalcGame extends Game {
 
         var rightAnswer = Integer.toString(result);
 
-        return new EvenRound(task, rightAnswer);
+        return new GameRound(task, rightAnswer);
     }
 }

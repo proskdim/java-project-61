@@ -1,12 +1,12 @@
 package hexlet.code.games;
 
-public class EvenRound {
+public class GameRound {
     private final String task;
     private final String rightAnswer;
 
-    EvenRound(String taskValue, String rightAnswerValue) {
-        this.task = taskValue;
-        this.rightAnswer = rightAnswerValue;
+    GameRound(String task, String rightAnswer) {
+        this.task = task;
+        this.rightAnswer = rightAnswer;
     }
 
     public String getRightAnswer() {
