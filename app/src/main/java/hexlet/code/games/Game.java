@@ -30,7 +30,9 @@ public abstract class Game {
 
         System.out.printf("Question: %s%n", gameRound.getTask());
 
-        var playerAnswer  = new Scanner(System.in).nextLine();
+        System.out.print("Your answer: ");
+
+        var playerAnswer  = new Scanner(System.in).next();
         var correctAnswer = gameRound.getRightAnswer();
 
         if (playerAnswer.equals(correctAnswer)) {
