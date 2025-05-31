@@ -5,6 +5,7 @@ import hexlet.code.games.EvenGame;
 import hexlet.code.games.Game;
 import hexlet.code.games.GreetGame;
 import hexlet.code.games.GCDGame;
+import hexlet.code.games.ProgressionGame;
 
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class Menu {
             2 - Even
             3 - Calc
             4 - GCD
+            5 - Progression
             0 - Exit\
             """;
 
@@ -41,6 +43,7 @@ public class Menu {
             case "2" -> new EvenGame();
             case "3" -> new CalcGame();
             case "4" -> new GCDGame();
+            case "5" -> new ProgressionGame();
             default ->  null;
         };
     }
