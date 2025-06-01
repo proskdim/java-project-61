@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.StringJoiner;
 
 public class ProgressionGame extends Game {
@@ -10,7 +10,7 @@ public class ProgressionGame extends Game {
 
     @Override
     protected GameRound newRound() {
-        var random = new Random();
+        var random = new SecureRandom();
 
         var start = random.nextInt(1, MAX_START + 1);
         var step = random.nextInt(1, MAX_STEP + 1);

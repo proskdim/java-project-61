@@ -1,13 +1,13 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class PrimeGame extends Game {
     private static final int MAX_NUMBER = 101;
 
     @Override
     protected Object newRound() {
-        var rand = new Random();
+        var rand = new SecureRandom();
 
         var number = rand.nextInt(1, MAX_NUMBER + 1);
         var task = String.valueOf(number);

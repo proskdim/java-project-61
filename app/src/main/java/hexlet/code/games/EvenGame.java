@@ -1,13 +1,13 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class EvenGame extends Game {
     private static final int MAX_NUMBER = 99;
 
     @Override
     public GameRound newRound() {
-        var number = new Random().nextInt(1, MAX_NUMBER + 1);
+        var number = new SecureRandom().nextInt(1, MAX_NUMBER + 1);
 
         return new GameRound(
                 Integer.toString(number),

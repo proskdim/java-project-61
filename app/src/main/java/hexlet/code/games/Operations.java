@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class Operations {
     public static final int PLUS = 0;
@@ -19,7 +19,7 @@ public class Operations {
     }
 
     public static int randOperation() {
-        Random random = new Random();
+        var random = new SecureRandom();
         return random.nextInt(3);
     }
 

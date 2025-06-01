@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class GCDGame extends Game {
     private static final int MAX_NUMBER = 10;
@@ -22,7 +22,7 @@ public class GCDGame extends Game {
     }
 
     private static int generateNumber() {
-        var random = new Random();
+        var random = new SecureRandom();
         var gcdProtector = random.nextInt(1, MAX_NUMBER + 1);
         return gcdProtector * random.nextInt(1, MAX_NUMBER + 1);
     }

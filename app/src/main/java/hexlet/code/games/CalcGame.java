@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class CalcGame extends Game {
 
@@ -13,7 +13,7 @@ public class CalcGame extends Game {
 
     @Override
     public GameRound newRound() {
-        var random = new Random();
+        var random = new SecureRandom();
 
         var cm = Operations.randOperation();
 
