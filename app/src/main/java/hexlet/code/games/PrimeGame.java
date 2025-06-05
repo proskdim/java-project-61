@@ -6,6 +6,7 @@ import java.security.SecureRandom;
 
 public final class PrimeGame extends Game {
     private static final int MAX_NUMBER = 101;
+    private static final int FIRST_ODD = 3;
     private static final SecureRandom RANDOM = new SecureRandom();
 
     @Override
@@ -34,7 +35,7 @@ public final class PrimeGame extends Game {
         }
 
         int sqrt = (int) Math.sqrt(number);
-        for (int i = 3; i <= sqrt; i += 2) {
+        for (int i = FIRST_ODD; i <= sqrt; i += 2) {
             if (number % i == 0) {
                 return false;
             }
