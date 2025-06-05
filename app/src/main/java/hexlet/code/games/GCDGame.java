@@ -1,36 +1,36 @@
 package hexlet.code.games;
 
+import hexlet.code.Game;
+import hexlet.code.GameRound;
 import java.security.SecureRandom;
 
-public class GCDGame extends Game {
+public final class GCDGame extends Game {
     private static final int MAX_NUMBER = 10;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     @Override
-    protected void printRules() {
-        System.out.println("Find the greatest common divisor of given numbers.");
+    protected String getGameDescription() {
+        return "Find the greatest common divisor of given numbers.";
     }
 
     @Override
-    public GameRound newRound() {
-        var num1 = generateNumber();
-        var num2 = generateNumber();
+    protected GameRound generateRound() {
+        int num1 = generateNumber();
+        int num2 = generateNumber();
 
-        var task = "%d %d".formatted(num1, num2);
-        var correctAnswer = Integer.toString(gcd(num1, num2));
+        String question = String.format("%d %d", num1, num2);
+        String answer = String.valueOf(gcd(num1, num2));
 
-        return new GameRound(task, correctAnswer);
+        return new GameRound(question, answer);
     }
 
-    private static int generateNumber() {
-        var random = new SecureRandom();
-        var gcdProtector = random.nextInt(1, MAX_NUMBER + 1);
-        return gcdProtector * random.nextInt(1, MAX_NUMBER + 1);
+    private int generateNumber() {
+        int multiplier = RANDOM.nextInt(1, MAX_NUMBER + 1);
+        int factor = RANDOM.nextInt(1, MAX_NUMBER + 1);
+        return multiplier * factor;
     }
 
-    private static int gcd(int num1, int num2) {
-        if (num2 == 0) {
-            return num1;
-        }
-        return gcd(num2, num1 % num2);
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
     }
 }

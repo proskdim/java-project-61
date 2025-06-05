@@ -1,31 +1,66 @@
 package hexlet.code.games;
 
+import hexlet.code.Game;
+import hexlet.code.GameRound;
 import java.security.SecureRandom;
 
-public class CalcGame extends Game {
-
+public final class CalcGame extends Game {
     private static final int MAX_NUMBER = 49;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     @Override
-    protected void printRules() {
-        System.out.println("What is the result of the expression?");
+    protected String getGameDescription() {
+        return "What is the result of the expression?";
     }
 
     @Override
-    public GameRound newRound() {
-        var random = new SecureRandom();
+    protected GameRound generateRound() {
+        int num1 = RANDOM.nextInt(1, MAX_NUMBER + 1);
+        int num2 = RANDOM.nextInt(1, MAX_NUMBER + 1);
+        Operation operation = Operation.getRandom();
 
-        var cm = Operations.randOperation();
+        String question = String.format("%d %s %d", num1, operation.getSymbol(), num2);
+        String answer = String.valueOf(operation.calculate(num1, num2));
 
-        var num1 = random.nextInt(1, MAX_NUMBER + 1);
-        var num2 = random.nextInt(1, MAX_NUMBER + 1);
+        return new GameRound(question, answer);
+    }
 
-        var task = "%d %s %d".formatted(num1, Operations.getSymbol(cm), num2);
+    private enum Operation {
+        PLUS("+") {
+            @Override
+            int calculate(int a, int b) {
+                return a + b;
+            }
+        },
+        MINUS("-") {
+            @Override
+            int calculate(int a, int b) {
+                return a - b;
+            }
+        },
+        MULTIPLY("*") {
+            @Override
+            int calculate(int a, int b) {
+                return a * b;
+            }
+        };
 
-        var result = Operations.calculate(cm, num1, num2);
+        private final String symbol;
+        private static final SecureRandom RANDOM = new SecureRandom();
 
-        var rightAnswer = Integer.toString(result);
+        Operation(String symbol) {
+            this.symbol = symbol;
+        }
 
-        return new GameRound(task, rightAnswer);
+        public String getSymbol() {
+            return symbol;
+        }
+
+        abstract int calculate(int a, int b);
+
+        public static Operation getRandom() {
+            Operation[] operations = values();
+            return operations[RANDOM.nextInt(operations.length)];
+        }
     }
 }

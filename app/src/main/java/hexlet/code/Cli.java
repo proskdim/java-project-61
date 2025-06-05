@@ -2,20 +2,13 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-import hexlet.code.entities.Player;
+public final class Cli {
+    private static final Scanner SCANNER = new Scanner(System.in);
 
-public class Cli {
-    public static Player greet(Player p) {
+    public static void greet() {
+        System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
-        Scanner s = new Scanner(System.in);
-
-        p.setName(s.next());
-        printHello(p.getName());
-
-        return p;
-    }
-
-    private static void printHello(String name) {
-        System.out.println("Hello, " + name + "!");
+        String userName = SCANNER.next();
+        System.out.println("Hello, " + userName + "!");
     }
 }
