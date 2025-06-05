@@ -45,15 +45,15 @@ public final class CalcGame extends Game {
             }
         };
 
-        private final String operatorSymbol;
+        private final String symbol;
         private static final SecureRandom RANDOM = new SecureRandom();
 
         Operation(String operatorSymbol) {
-            this.operatorSymbol = operatorSymbol;
+            this.symbol = operatorSymbol;
         }
 
         public String getSymbol() {
-            return operatorSymbol;
+            return symbol;
         }
 
         abstract int calculate(int a, int b);
