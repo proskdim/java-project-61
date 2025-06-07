@@ -1,12 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Game;
-import hexlet.code.GameRound;
-import java.security.SecureRandom;
+import hexlet.code.Utils;
 
 public final class GCDGame extends Game {
     private static final int MAX_NUMBER = 10;
-    private static final SecureRandom RANDOM = new SecureRandom();
 
     @Override
     protected String getGameDescription() {
@@ -14,19 +12,19 @@ public final class GCDGame extends Game {
     }
 
     @Override
-    protected GameRound generateRound() {
+    protected String[] generateRound() {
         int num1 = generateNumber();
         int num2 = generateNumber();
 
         String question = String.format("%d %d", num1, num2);
         String answer = String.valueOf(gcd(num1, num2));
 
-        return new GameRound(question, answer);
+        return new String[]{question, answer};
     }
 
     private int generateNumber() {
-        int multiplier = RANDOM.nextInt(1, MAX_NUMBER + 1);
-        int factor = RANDOM.nextInt(1, MAX_NUMBER + 1);
+        int multiplier = Utils.getRandomNumber(1, MAX_NUMBER);
+        int factor = Utils.getRandomNumber(1, MAX_NUMBER);
         return multiplier * factor;
     }
 

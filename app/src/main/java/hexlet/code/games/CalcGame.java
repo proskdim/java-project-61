@@ -1,12 +1,11 @@
 package hexlet.code.games;
 
 import hexlet.code.Game;
-import hexlet.code.GameRound;
-import java.security.SecureRandom;
+import hexlet.code.Utils;
 
 public final class CalcGame extends Game {
     private static final int MAX_NUMBER = 49;
-    private static final SecureRandom RANDOM = new SecureRandom();
+    private static final String[] OPERATIONS = {"+", "-", "*"};
 
     @Override
     protected String getGameDescription() {
@@ -14,53 +13,23 @@ public final class CalcGame extends Game {
     }
 
     @Override
-    protected GameRound generateRound() {
-        int num1 = RANDOM.nextInt(1, MAX_NUMBER + 1);
-        int num2 = RANDOM.nextInt(1, MAX_NUMBER + 1);
-        Operation operation = Operation.getRandom();
+    protected String[] generateRound() {
+        int num1 = Utils.getRandomNumber(1, MAX_NUMBER);
+        int num2 = Utils.getRandomNumber(1, MAX_NUMBER);
+        String operation = OPERATIONS[Utils.getRandomNumber(0, OPERATIONS.length - 1)];
 
-        String question = String.format("%d %s %d", num1, operation.getSymbol(), num2);
-        String answer = String.valueOf(operation.calculate(num1, num2));
+        String question = String.format("%d %s %d", num1, operation, num2);
+        String answer = String.valueOf(calculate(num1, num2, operation));
 
-        return new GameRound(question, answer);
+        return new String[]{question, answer};
     }
 
-    private enum Operation {
-        PLUS("+") {
-            @Override
-            int calculate(int a, int b) {
-                return a + b;
-            }
-        },
-        MINUS("-") {
-            @Override
-            int calculate(int a, int b) {
-                return a - b;
-            }
-        },
-        MULTIPLY("*") {
-            @Override
-            int calculate(int a, int b) {
-                return a * b;
-            }
+    private int calculate(int a, int b, String operation) {
+        return switch (operation) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
+            default -> throw new IllegalArgumentException("Unknown operation: " + operation);
         };
-
-        private final String symbol;
-        private static final SecureRandom RANDOM = new SecureRandom();
-
-        Operation(String operatorSymbol) {
-            this.symbol = operatorSymbol;
-        }
-
-        public String getSymbol() {
-            return symbol;
-        }
-
-        abstract int calculate(int a, int b);
-
-        public static Operation getRandom() {
-            Operation[] operations = values();
-            return operations[RANDOM.nextInt(operations.length)];
-        }
     }
 }

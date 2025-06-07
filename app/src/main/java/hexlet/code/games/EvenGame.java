@@ -1,12 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Game;
-import hexlet.code.GameRound;
-import java.security.SecureRandom;
+import hexlet.code.Utils;
 
 public final class EvenGame extends Game {
     private static final int MAX_NUMBER = 99;
-    private static final SecureRandom RANDOM = new SecureRandom();
 
     @Override
     protected String getGameDescription() {
@@ -14,12 +12,12 @@ public final class EvenGame extends Game {
     }
 
     @Override
-    protected GameRound generateRound() {
-        int number = RANDOM.nextInt(1, MAX_NUMBER + 1);
+    protected String[] generateRound() {
+        int number = Utils.getRandomNumber(1, MAX_NUMBER);
         String question = String.valueOf(number);
         String answer = isEven(number) ? "yes" : "no";
 
-        return new GameRound(question, answer);
+        return new String[]{question, answer};
     }
 
     private boolean isEven(int number) {

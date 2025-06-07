@@ -32,7 +32,7 @@ public class App {
         switch (choice) {
             case "1" -> {
                 System.out.println("Your choice: 1\n");
-                Engine.greetOnly();
+                Cli.greet();
             }
             case "2" -> {
                 System.out.println("Your choice: 2\n");
@@ -58,7 +58,7 @@ public class App {
                 System.out.println("Goodbye!");
             }
             default -> {
-                System.out.println("Invalid choice. Goodbye!");
+                System.out.println("Invalid choice: '" + choice + "'. Please enter a number from 0 to 6. Goodbye!");
             }
         }
     }

@@ -1,8 +1,6 @@
 package hexlet.code;
 
 public abstract class Game {
-    private static final int QUESTIONS_COUNT = 3;
-
     public final void start() {
         String description = getGameDescription();
         String[][] questionsAndAnswers = generateQuestionsAndAnswers();
@@ -10,17 +8,17 @@ public abstract class Game {
     }
 
     private String[][] generateQuestionsAndAnswers() {
-        String[][] questions = new String[QUESTIONS_COUNT][2];
+        String[][] questions = new String[Engine.ROUNDS_COUNT][2];
 
-        for (int i = 0; i < QUESTIONS_COUNT; i++) {
-            GameRound round = generateRound();
-            questions[i][0] = round.getQuestion();
-            questions[i][1] = round.getAnswer();
+        for (int i = 0; i < Engine.ROUNDS_COUNT; i++) {
+            String[] round = generateRound();
+            questions[i][0] = round[0];
+            questions[i][1] = round[1];
         }
 
         return questions;
     }
 
     protected abstract String getGameDescription();
-    protected abstract GameRound generateRound();
+    protected abstract String[] generateRound();
 }
